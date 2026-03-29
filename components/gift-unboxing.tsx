@@ -175,7 +175,7 @@ export function GiftUnboxing({ id, message, senderName, recipientName, boxStyle,
                   onClick={handleOpen}
                   role="button"
                   tabIndex={0}
-                  aria-label="คลิกเพื่อเปิดกล่องของขวัญ"
+                  aria-label="Click to open the gift box"
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') handleOpen() }}
                 >
                   {/* BOW (above the lid, always visible) */}
@@ -260,16 +260,16 @@ export function GiftUnboxing({ id, message, senderName, recipientName, boxStyle,
               <div className="space-y-3">
                 {(isIdle || isShaking) && (
                   <h2 className="font-serif text-3xl md:text-4xl text-primary tracking-tight italic">
-                    {isShaking ? 'กำลังเปิด...' : 'แตะเพื่อเปิดกล่องของขวัญ'}
+                    {isShaking ? 'Opening...' : 'Tap to open your gift'}
                   </h2>
                 )}
                 {isIdle && (
                   <p className="font-sans text-on-surface-variant max-w-sm mx-auto leading-relaxed text-sm animate-pulse">
-                    มีบางอย่างพิเศษรออยู่ข้างใน...
+                    Something special awaits inside...
                   </p>
                 )}
                 {isOpening && (
-                  <p className="font-sans text-on-surface-variant text-sm animate-pulse">กำลังเผยความลับ...</p>
+                  <p className="font-sans text-on-surface-variant text-sm animate-pulse">Revealing your surprise...</p>
                 )}
               </div>
             </>
@@ -370,7 +370,7 @@ export function GiftUnboxing({ id, message, senderName, recipientName, boxStyle,
                         opacity: 0.85,
                       }}
                     >
-                      ด้วยความรัก,
+                      With love,
                     </p>
                     <p className="font-serif font-bold text-xl" style={{ color: theme.lid }}>{senderName}</p>
                   </div>
