@@ -27,6 +27,7 @@ export function CreateGiftForm() {
   const [uploading, setUploading] = useState(false)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState<string | null>(null)
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -87,7 +88,10 @@ export function CreateGiftForm() {
       const data = await res.json()
       if (!res.ok) throw new Error(data.error ?? 'Failed to create gift')
 
-      router.push(`/create/success?id=${data.id}`)
+      setSuccess('Your gift has been created successfully! Redirecting...')
+      setTimeout(() => {
+        router.push(`/create/success?id=${data.id}`)
+      }, 2000)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong')
     } finally {
@@ -230,6 +234,14 @@ export function CreateGiftForm() {
           </p>
         </div>
       </div>
+
+      {/* Success */}
+      {success && (
+        <div className="px-4 py-3 rounded-[1rem] bg-[#d4edda] text-[#155724] text-sm border border-[#28a745]/20 flex items-center gap-2">
+          <span className="material-symbols-outlined text-lg leading-none">check_circle</span>
+          {success}
+        </div>
+      )}
 
       {/* Error */}
       {error && (
