@@ -1,0 +1,164 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Ethereal Exchange palette */
+  --background: #fbf9f1;
+  --foreground: #1b1c17;
+
+  --card: #ffffff;
+  --card-foreground: #1b1c17;
+  --popover: #ffffff;
+  --popover-foreground: #1b1c17;
+
+  /* Dusty rose primary */
+  --primary: #6b5a60;
+  --primary-foreground: #ffffff;
+
+  /* Soft secondary */
+  --secondary: #dae1e3;
+  --secondary-foreground: #1b1c17;
+
+  --muted: #f0eee6;
+  --muted-foreground: #4d4447;
+
+  --accent: #fce4ec;
+  --accent-foreground: #6b5a60;
+
+  --destructive: #ba1a1a;
+  --destructive-foreground: #ffffff;
+
+  --border: #d0c3c7;
+  --input: #e4e3db;
+  --ring: #6b5a60;
+
+  --radius: 1rem;
+
+  /* Ethereal tokens */
+  --surface: #fbf9f1;
+  --surface-container: #f0eee6;
+  --surface-container-low: #f5f4ec;
+  --surface-variant: #e4e3db;
+  --primary-container: #fce4ec;
+  --primary-fixed: #f4dce4;
+  --on-surface-variant: #4d4447;
+  --outline-variant: #d0c3c7;
+
+  /* Full Ethereal token set */
+  --surface-container-high: #eae8e0;
+  --surface-container-highest: #e4e3db;
+  --surface-bright: #fbf9f1;
+  --surface-dim: #dcdad2;
+  --on-background: #1b1c17;
+  --on-surface: #1b1c17;
+  --outline: #7f7478;
+  --tertiary-container: #e5eddb;
+  --tertiary: #596153;
+  --inverse-surface: #30312c;
+  --inverse-on-surface: #f3f1e9;
+  --on-primary-fixed-variant: #524249;
+  --on-primary-fixed: #25181e;
+  --on-primary-container: #76646b;
+  --on-secondary-container: #5d6466;
+  --tertiary-fixed: #dde5d3;
+  --tertiary-fixed-dim: #c1c9b8;
+}
+
+@theme inline {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Noto Serif', serif;
+  --font-handwritten: 'Great Vibes', cursive;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-surface: var(--surface);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-variant: var(--surface-variant);
+  --color-primary-container: var(--primary-container);
+  --color-primary-fixed: var(--primary-fixed);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-outline-variant: var(--outline-variant);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 1rem);
+  --radius-xl: calc(var(--radius) + 2rem);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Mesh gradient background */
+.bg-mesh {
+  background-color: #fbf9f1;
+  background-image:
+    radial-gradient(at 0% 0%, #fce4ec 0px, transparent 50%),
+    radial-gradient(at 100% 100%, #f4dce4 0px, transparent 50%),
+    radial-gradient(at 50% 50%, #fbf9f1 0px, transparent 80%);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-16px) rotate(2deg); }
+}
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Gift shake */
+@keyframes giftShake {
+  0%   { transform: rotate(0deg) scale(1); }
+  25%  { transform: rotate(-5deg) scale(1.04); }
+  50%  { transform: rotate(5deg) scale(1.04); }
+  75%  { transform: rotate(-5deg) scale(1.04); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+/* Reveal */
+@keyframes fadeScaleIn {
+  from { opacity: 0; transform: scale(0.88) translateY(24px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
