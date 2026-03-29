@@ -26,8 +26,8 @@ function SuccessContent() {
   if (!id) {
     return (
       <div className="text-center">
-        <p className="text-on-surface-variant">ไม่พบของขวัญ</p>
-        <Link href="/create" className="text-primary underline mt-4 block">สร้างใหม่</Link>
+        <p className="text-on-surface-variant">Gift not found</p>
+        <Link href="/create" className="text-primary underline mt-4 block">Create a new one</Link>
       </div>
     )
   }
@@ -59,21 +59,21 @@ function SuccessContent() {
       </div>
 
       <div className="inline-block px-3 py-1 bg-primary-container rounded-full mb-4">
-        <span className="text-xs font-semibold uppercase tracking-widest text-primary">พร้อมส่งแล้ว</span>
+        <span className="text-xs font-semibold uppercase tracking-widest text-primary">Ready to Send</span>
       </div>
 
       <h1 className="font-serif italic text-4xl text-primary mb-3 text-balance leading-tight">
-        ของขวัญพร้อมแล้ว!
+        Your gift is ready!
       </h1>
       <p className="text-on-surface-variant leading-relaxed mb-8 text-pretty max-w-sm mx-auto text-sm">
-        คัดลอกลิงก์ด้านล่างแล้วส่งให้คนพิเศษของคุณได้เลย
-        เมื่อเขา/เธอเปิดลิงก์ กล่องของขวัญจะปรากฏขึ้น
+        Copy the link below and send it to your special someone.
+        When they open the link, a gift box will appear for them to unwrap.
       </p>
 
       {/* URL box */}
       <div className="bg-surface-container-low border border-outline-variant/50 rounded-2xl p-4 mb-4 text-left relative overflow-hidden">
         <div className="absolute top-3 left-3 right-3 bottom-3 border border-outline-variant/15 rounded-xl pointer-events-none" />
-        <p className="text-xs font-semibold uppercase tracking-widest text-on-surface-variant mb-2">ลิงก์ลับของคุณ</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-on-surface-variant mb-2">Your Secret Link</p>
         <div className="flex items-center gap-3">
           <p className="text-sm text-foreground flex-1 truncate font-mono text-primary/80">
             <GiftUrl id={id} />
@@ -87,7 +87,7 @@ function SuccessContent() {
             }`}
           >
             {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-            {copied ? 'คัดลอกแล้ว!' : 'คัดลอก'}
+            {copied ? 'Copied!' : 'Copy'}
           </button>
         </div>
       </div>
@@ -97,7 +97,7 @@ function SuccessContent() {
         target="_blank"
         className="inline-block text-xs text-on-surface-variant underline underline-offset-2 hover:text-primary transition-colors mb-8"
       >
-        ดูตัวอย่างหน้าเปิดกล่อง
+        Preview the unboxing page
       </Link>
 
       <div className="border-t border-outline-variant/30 pt-6">
@@ -105,7 +105,7 @@ function SuccessContent() {
           href="/create"
           className="text-sm text-primary hover:opacity-80 transition-opacity font-semibold"
         >
-          สร้างของขวัญอีกอัน
+          Create another gift
         </Link>
       </div>
     </div>
@@ -122,7 +122,7 @@ export default function SuccessPage() {
       </div>
 
       <div className="relative z-10 max-w-md w-full bg-white/80 backdrop-blur-sm rounded-[2rem] shadow-[0_12px_40px_-8px_rgba(107,90,96,0.18)] border border-outline-variant/30 p-8 md:p-10">
-        <Suspense fallback={<p className="text-center text-on-surface-variant">กำลังโหลด...</p>}>
+        <Suspense fallback={<p className="text-center text-on-surface-variant">Loading...</p>}>
           <SuccessContent />
         </Suspense>
       </div>

@@ -34,10 +34,10 @@ const CONFETTI_COLORS = [
 ]
 
 const BOX_THEMES: Record<string, { lid: string; body: string; ribbon: string; bow: string; shadow: string }> = {
-  classic:  { lid: '#6b5a60', body: '#524249', ribbon: '#f4dce4', bow: '#fce4ec', shadow: 'rgba(107,90,96,0.25)' },
+  simple:   { lid: '#6b5a60', body: '#524249', ribbon: '#f4dce4', bow: '#fce4ec', shadow: 'rgba(107,90,96,0.25)' },
   romantic: { lid: '#c9184a', body: '#a4133c', ribbon: '#ffb3c6', bow: '#ff8fab', shadow: 'rgba(201,24,74,0.25)' },
-  elegant:  { lid: '#2c2c2c', body: '#1a1a1a', ribbon: '#c9a84c', bow: '#e8c97a', shadow: 'rgba(44,44,44,0.25)' },
-  playful:  { lid: '#e67e22', body: '#ca6f1e', ribbon: '#a29bfe', bow: '#6c5ce7', shadow: 'rgba(230,126,34,0.25)' },
+  surprise: { lid: '#e67e22', body: '#ca6f1e', ribbon: '#a29bfe', bow: '#6c5ce7', shadow: 'rgba(230,126,34,0.25)' },
+  midnight: { lid: '#2c2c2c', body: '#1a1a1a', ribbon: '#c9a84c', bow: '#e8c97a', shadow: 'rgba(44,44,44,0.25)' },
 }
 
 function createParticles(count: number): Particle[] {
@@ -64,7 +64,7 @@ export function GiftUnboxing({ id, message, senderName, recipientName, boxStyle,
   const [phase, setPhase] = useState<'idle' | 'shaking' | 'opening' | 'revealed'>('idle')
   const [particles, setParticles] = useState<Particle[]>([])
   const animRef = useRef<number | null>(null)
-  const theme = BOX_THEMES[boxStyle] ?? BOX_THEMES.classic
+  const theme = BOX_THEMES[boxStyle] ?? BOX_THEMES.simple
 
   function handleOpen() {
     if (phase !== 'idle') return
@@ -175,7 +175,7 @@ export function GiftUnboxing({ id, message, senderName, recipientName, boxStyle,
                   onClick={handleOpen}
                   role="button"
                   tabIndex={0}
-                  aria-label="คลิกเพื่อเปิดกล่องของขวัญ"
+                  aria-label="Click to open the gift box"
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') handleOpen() }}
                 >
                   {/* BOW (above the lid, always visible) */}
@@ -260,16 +260,16 @@ export function GiftUnboxing({ id, message, senderName, recipientName, boxStyle,
               <div className="space-y-3">
                 {(isIdle || isShaking) && (
                   <h2 className="font-serif text-3xl md:text-4xl text-primary tracking-tight italic">
-                    {isShaking ? 'กำลังเปิด...' : 'แตะเพื่อเปิดกล่องของขวัญ'}
+                    {isShaking ? 'Opening...' : 'Tap to open your gift'}
                   </h2>
                 )}
                 {isIdle && (
                   <p className="font-sans text-on-surface-variant max-w-sm mx-auto leading-relaxed text-sm animate-pulse">
-                    มีบางอย่างพิเศษรออยู่ข้างใน...
+                    Something special awaits inside...
                   </p>
                 )}
                 {isOpening && (
-                  <p className="font-sans text-on-surface-variant text-sm animate-pulse">กำลังเผยความลับ...</p>
+                  <p className="font-sans text-on-surface-variant text-sm animate-pulse">Revealing your surprise...</p>
                 )}
               </div>
             </>
@@ -370,7 +370,7 @@ export function GiftUnboxing({ id, message, senderName, recipientName, boxStyle,
                         opacity: 0.85,
                       }}
                     >
-                      ด้วยความรัก,
+                      With love,
                     </p>
                     <p className="font-serif font-bold text-xl" style={{ color: theme.lid }}>{senderName}</p>
                   </div>

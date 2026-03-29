@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
 
     const result = await sql`
       INSERT INTO gifts (message, sender_name, recipient_name, box_style, image_url)
-      VALUES (${message}, ${sender_name}, ${recipient_name}, ${box_style ?? 'classic'}, ${image_url ?? null})
+      VALUES (${message}, ${sender_name}, ${recipient_name}, ${box_style ?? 'simple'}, ${image_url ?? null})
       RETURNING id
     `
 

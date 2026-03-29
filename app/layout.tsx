@@ -21,8 +21,8 @@ const _greatVibes = Great_Vibes({
 })
 
 export const metadata: Metadata = {
-  title: 'The Ethereal Exchange — ส่งของขวัญลับ',
-  description: 'สร้างของขวัญดิจิทัลที่มีเสน่ห์ พร้อมลิงก์ลับสำหรับคนพิเศษของคุณ',
+  title: 'The Ethereal Exchange — Send Secret Gifts',
+  description: 'Create enchanting digital gifts with a secret link for your special someone.',
   generator: 'v0.app',
 }
 
@@ -32,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="th">
+    <html lang="en">
       <head>
         <link
           rel="stylesheet"
