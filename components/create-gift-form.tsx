@@ -18,6 +18,8 @@ export function CreateGiftForm() {
 
   const [form, setForm] = useState({
     message: '',
+    sender_name: '',
+    recipient_name: '',
     box_style: '',
   })
   const [imageFile, setImageFile] = useState<File | null>(null)
@@ -26,7 +28,7 @@ export function CreateGiftForm() {
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  function handleChange(e: React.ChangeEvent<HTMLTextAreaElement | HTMLSelectElement>) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
@@ -43,6 +45,16 @@ export function CreateGiftForm() {
 
     if (!form.message.trim()) {
       setError('Please write a heartfelt message.')
+      return
+    }
+
+    if (!form.sender_name.trim()) {
+      setError('Please enter your name.')
+      return
+    }
+
+    if (!form.recipient_name.trim()) {
+      setError('Please enter the recipient\'s name.')
       return
     }
 
@@ -66,6 +78,8 @@ export function CreateGiftForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: form.message,
+          sender_name: form.sender_name,
+          recipient_name: form.recipient_name,
           box_style: form.box_style || 'simple',
           image_url,
         }),
@@ -86,6 +100,36 @@ export function CreateGiftForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-10 relative z-10">
+
+      {/* Sender & Recipient Names */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-3">
+          <label className="block font-sans text-sm font-semibold text-[#6b5a60] tracking-wide uppercase">
+            From
+          </label>
+          <input
+            type="text"
+            name="sender_name"
+            value={form.sender_name}
+            onChange={handleChange}
+            placeholder="Your name"
+            className="w-full bg-[#eae8e0] border-none rounded-full px-6 py-4 focus:outline-none focus:bg-white focus:shadow-[0_0_0_1px_rgba(107,90,96,0.15)] transition-all duration-300 font-sans text-[#1b1c17] placeholder:text-[#7f7478]/40"
+          />
+        </div>
+        <div className="space-y-3">
+          <label className="block font-sans text-sm font-semibold text-[#6b5a60] tracking-wide uppercase">
+            To
+          </label>
+          <input
+            type="text"
+            name="recipient_name"
+            value={form.recipient_name}
+            onChange={handleChange}
+            placeholder="Recipient's name"
+            className="w-full bg-[#eae8e0] border-none rounded-full px-6 py-4 focus:outline-none focus:bg-white focus:shadow-[0_0_0_1px_rgba(107,90,96,0.15)] transition-all duration-300 font-sans text-[#1b1c17] placeholder:text-[#7f7478]/40"
+          />
+        </div>
+      </div>
 
       {/* Message */}
       <div className="space-y-3">
